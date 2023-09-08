@@ -1,0 +1,16 @@
+<html>
+<body>
+<form method="post" action="/update">
+    <input type="hidden"
+           name="id"
+           th:value="${person.id}"/>
+    <input type="text" name="name" placeholder="name"
+           th:value="${person.name}"/>
+    <input type="text" name="age" placeholder="age"
+           th:value="${person.age}"/>
+    <input type="text" name="range" placeholder="range"
+           th:value="${person.range}"/>
+    <input type="submit"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+<body>
+<table border="1">
+    <tr>
+        <th> Имя</th>
+        <th> Возраст</th>
+        <th> Ранг</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr th:each="person: ${persons}">
+        <td th:text="${person.name}"/>
+        <td th:text="${person.age}"/>
+        <td th:text="${person.range}"/>
+        <td><a th:href="@{'/edit-form/' + ${person.id}}"/>Edit</td>
+        <td><a th:href="@{'/delete/' + ${person.id}}"/>Delete</td>
+    </tr>
+</table>
+<a href="/create-form">Add person</a>
+</body>
+</html>
