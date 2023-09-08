@@ -2,24 +2,27 @@ package com.example.crud.model;
 
 public class Person {
 
-    private String id;
+    private int id;
     private String name;
     private int age;
     private String range;
 
 
-    public Person(String id, String name, int age, String range) {
+    public Person(int id, String name, int age, String range) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.range = range;
     }
 
-    public String getId() {
+    public Person() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
