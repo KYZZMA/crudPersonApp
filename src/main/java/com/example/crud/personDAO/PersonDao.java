@@ -35,14 +35,14 @@ public class PersonDao {
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM Person";
+            String SQL = "SELECT * FROM Persons";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while(resultSet.next()) {
                 Person person = new Person();
 
                 person.setId(resultSet.getInt("id"));
-                person.setName(resultSet.getString("nam"));
+                person.setName(resultSet.getString("name"));
                 person.setAge(resultSet.getInt("age"));
                 person.setRange(resultSet.getString("range"));
 
@@ -61,7 +61,7 @@ public class PersonDao {
 
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("SELECT * FROM Person WHERE id=?");
+                    connection.prepareStatement("SELECT * FROM Persons WHERE id=?");
 
             preparedStatement.setInt(1, id);
 
@@ -72,7 +72,7 @@ public class PersonDao {
             person = new Person();
 
             person.setId(resultSet.getInt("id"));
-            person.setName(resultSet.getString("nam"));
+            person.setName(resultSet.getString("name"));
             person.setAge(resultSet.getInt("age"));
             person.setRange(resultSet.getString("range"));
         } catch (SQLException throwables) {
@@ -86,7 +86,7 @@ public class PersonDao {
     public static void save(Person person) {
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO Person VALUES(4, ?, ?, ?)");
+                    connection.prepareStatement("INSERT INTO Persons (\"name\",\"age\",\"range\") VALUES( ?, ?, ?)");
 
             preparedStatement.setString(1, person.getName());
             preparedStatement.setInt(2, person.getAge());
@@ -104,7 +104,7 @@ public class PersonDao {
         PreparedStatement preparedStatement =
                 null;
         try {
-            preparedStatement = connection.prepareStatement("DELETE FROM Person WHERE id=?");
+            preparedStatement = connection.prepareStatement("DELETE FROM Persons WHERE id=?");
 
             preparedStatement.setInt(1, id);
 
@@ -119,11 +119,12 @@ public class PersonDao {
     public static void update(Person updatedPerson, int id) {
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("UPDATE Person SET nam=?, age=?, range=? WHERE id=?");
+                    connection.prepareStatement("UPDATE Persons SET name=?, age=?, range=? WHERE id=?");
 
             preparedStatement.setString(1, updatedPerson.getName());
             preparedStatement.setInt(2, updatedPerson.getAge());
             preparedStatement.setString(3, updatedPerson.getRange());
+            preparedStatement.setInt(4, id);
 
 
             preparedStatement.executeUpdate();
