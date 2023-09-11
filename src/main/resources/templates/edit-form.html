@@ -1,6 +1,6 @@
 <html>
 <body>
-<form method="post" action="/update">
+<form th:method="post" th:action="@{/update/{id}(id=${person.getId()})}" th:object="${person}" >
     <input type="hidden"
            name="id"
            th:value="${person.id}"/>

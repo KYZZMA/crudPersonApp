@@ -1,13 +1,14 @@
-package com.example.crud.controllers;
+package com.example.crud.personDAO;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PersonControllerTest {
+class PersonDaoTest {
 
     @Test
-    void getPerson() {
+    void save() {
+
 
     }
 }

@@ -25,37 +25,28 @@ public class PersonController {
 
     @PostMapping("/create")
     public String cereate(Person person){
-        person.setId(UUID.randomUUID());
-        PersonDao.personGet().add(person);
+        PersonDao.save(person);
         return "redirect:/";
     }
-//
-//    @GetMapping("/delete/{id}")
-//    public String delete(@PathVariable("id") String id){
-//        Person pesonDelete = PersonDao.personGet().stream().
-//                filter(person -> person.getId().equals(id)).
-//                findFirst().
-//                orElseThrow(RuntimeException::new);
-//        PersonDao.personGet().remove(pesonDelete);
-//        return "redirect:/";
-//    }
-//
-//    @GetMapping("/edit-form/{id}")
-//    public String editForm(@PathVariable("id") String id, Model model){
-//        Person personUpdate = PersonDao.personGet().stream().
-//                filter(person -> person.getId().equals(id)).
-//                findFirst().
-//                orElseThrow(RuntimeException::new);
-//        model.addAttribute("person", personUpdate);
-//        return "edit-form";
-//    }
-//
-//    @PostMapping("/update")
-//    public String update(Person person){
-//        delete(person.getId());
-//        PersonDao.personGet().add(person);
-//        return "redirect:/";
-//    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id){
+       PersonDao.delete(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/edit-form/{id}")
+    public String editForm(@PathVariable("id") int id, Model model){
+        Person personUpdate = PersonDao.showIndex(id);
+        model.addAttribute("person", personUpdate);
+        return "edit-form";
+    }
+
+    @PostMapping("/update/{id}")
+    public String update(Person person, int id){
+        PersonDao.update(person, id);
+        return "redirect:/";
+    }
 
 }
 
